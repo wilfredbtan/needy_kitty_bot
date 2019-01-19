@@ -1,0 +1,25 @@
+{
+  "name": "needy_kitty_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilfredbtan/needy_kitty_bot.git"
+  },
+  "author": "Wilfred Bradley Tan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wilfredbtan/needy_kitty_bot/issues"
+  },
+  "homepage": "https://github.com/wilfredbtan/needy_kitty_bot#readme",
+  "dependencies": {
+    "telegraf": "^3.26.0",
+    "timer": "0.0.2"
+  },
+  "devDependencies": {}
+}
