@@ -29,8 +29,10 @@ function response() {
     return "hiss!";
   }
 }
-function hide(ctx) {
-  console.log(editMessageReplyMarkup(ctx.chat.id));
+
+function dec() {
+  excitement -= 1;
+  appetite -= 1;
 }
 
 bot.help((ctx) => ctx.reply('Meow Meow (I am a needy kitty!)'))
@@ -46,27 +48,17 @@ bot.start((ctx) => {
     .resize()
     .extra())
   }, 10000);
-  ctx.reply('Meow meow meow meow');
+  ctx.replyWithPhoto("https://memegenerator.net/img/instances/65088077/needy-cat-mreoow.jpg", {caption: 'Meow meow meow meow'});
 })
-
-// bot.start(ctx => {
-//     return ctx.reply(
-//         ("Welcome to NUS Reporting Bot! What would you like to do?",
-//         Mark
-//         .keyboard(["Report fault", "Check existing fault"])
-//         .oneTime()
-//         .resize()
-//         .extra())
-//     );
-// })
 
 bot.hears('feed', (ctx) => {
   appetite += 1;
   if(appetite > 3) {
-    reset();
     ctx.reply('Needy Kitty ate too much. Needy Kitty is dead. \nType /start to revive Needy Kitty.')
+    reset();
   } else if(excitement < 0) {
     ctx.reply('Needy Kitty starved to death. \nType /start to revive Needy Kitty.')
+    reset();
   } else {
     ctx.reply('yum yum in my tum tum');
   }
@@ -75,10 +67,11 @@ bot.hears('feed', (ctx) => {
 bot.hears('play', (ctx) => {
   excitement += 1;
   if(excitement > 3) {
-    reset();
     ctx.reply('Needy Kitty died of over-excitement. \nType /start to revive Needy Kitty.')
+    reset();
   } else if(excitement < 0) {
     ctx.reply('Needy Kitty died of boredom. \nType /start to revive Needy Kitty.')
+    reset();
   } else {
     ctx.reply('meow meow (perform for me human)');
   }
