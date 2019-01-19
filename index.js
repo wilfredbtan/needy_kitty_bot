@@ -30,7 +30,7 @@ function response() {
   }
 }
 function hide(ctx) {
-  editMessageReplyMarkup(ctx.from.chat_id)
+  console.log(editMessageReplyMarkup(ctx.chat.id));
 }
 
 bot.help((ctx) => ctx.reply('Meow Meow (I am a needy kitty!)'))
@@ -40,16 +40,27 @@ bot.start((ctx) => {
   // console.log(ctx);
   //feeding and playtime timer
   setTimeout(x => {
-    return ctx.reply('<b>feed</b> or <i>play?</i>', Extra.HTML().markup((m) =>
-      m.inlineKeyboard([
-        m.callbackButton('feed', 'feed'),
-        m.callbackButton('play', 'play')
-      ])))
+    return ctx.reply('feed or play?', Markup
+    .keyboard(["feed", "play"])
+    .oneTime()
+    .resize()
+    .extra())
   }, 10000);
   ctx.reply('Meow meow meow meow');
 })
 
-bot.action('feed', (ctx) => {
+// bot.start(ctx => {
+//     return ctx.reply(
+//         ("Welcome to NUS Reporting Bot! What would you like to do?",
+//         Mark
+//         .keyboard(["Report fault", "Check existing fault"])
+//         .oneTime()
+//         .resize()
+//         .extra())
+//     );
+// })
+
+bot.hears('feed', (ctx) => {
   appetite += 1;
   if(appetite > 3) {
     reset();
@@ -61,7 +72,7 @@ bot.action('feed', (ctx) => {
   }
 })
 
-bot.action('play', (ctx) => {
+bot.hears('play', (ctx) => {
   excitement += 1;
   if(excitement > 3) {
     reset();
